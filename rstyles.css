@@ -1,0 +1,60 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+header {
+    background-color: #4285f4;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 24px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #3b79db;
+}
+
+/* Add styles for the filter boxes */
+.filter-container {
+    display: flex;
+    justify-content: center;
+}
+
+.filter-box {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+#content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+}
