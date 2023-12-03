@@ -773,44 +773,157 @@ a.btn:nth-child(2)::before{
 
 /* Contact */
 
-.contact{
-    background: var(--secon-bg-color);
-    width: 100%;
+.contact .info-box {
+  color: #444444;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+  padding: 20px 0 30px 0;
+  height: 200px; /* Add a fixed height */
 }
 
-.contact form{
-    text-align: center;
-    max-width: 50rem;
-    margin: 1rem auto;
-    margin-bottom: 3rem;
+.contact .info-box i.bx {
+  font-size: 24px;
+  color: green;
+  border-radius: 50%;
+  padding: 15px;
+  background: #fff6e4;
 }
 
-.contact form input,
-.contact form textarea{
-    width: 100%;
-    color: var(--text-color);
-    background: var(--bg-color);
-    margin-bottom: .8rem;
-    border: none;
-    border-radius: 5px;
-    padding: .7rem;
+.contact .info-box h3 {
+  font-size: 20px;
+  color: #777777;
+  font-weight: 700;
+  margin: 10px 0;
 }
 
-.contact form textarea{
-    resize: none;
+.contact .info-box p {
+  padding: 0;
+  line-height: 10px;
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
-.formBtn{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.contact .social-links {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
 }
 
-.formBtn .btn{
-    cursor: pointer;
-    font-size: 1rem;
+.contact .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  color: #687683;
+  transition: 0.3s;
+  padding: 3px;
+  border-radius: 50px;
+  border: 1px solid #dde1e4;
+  height: 50px; /* Add a fixed height */
 }
 
+.contact .social-links a:hover {
+  color: #fff;
+  border-color: green;
+  background: green;
+}
+
+.contact .php-email-form {
+  margin-top: 15px; /* Add margin for separation */
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+  padding: 27px;
+}
+
+#contact .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#contact .row > div {
+  flex: 1;
+  margin: 10px;
+}
+#contact .info-box {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: #000000; /* Set text color to black */
+}
+
+#contact .info-box h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+#smsBox,
+#messengerBox,
+#gmailBox {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  color: #000000; /* Set text color to black */
+  max-height: 300px; /* Set a fixed height for the boxes */
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
+}
+
+#smsBox h3,
+#messengerBox h3,
+#gmailBox h3 {
+  color: #007bff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Center and style admin login section */
+#authorize_button,
+#signout_button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#authorize_button:hover,
+#signout_button:hover {
+  background-color: #2980b9;
+}
+
+#smsBox,
+#messengerBox,
+#gmailBox {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Additional styling for the admin login section */
+#content {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Center the entire section */
+.contact {
+  text-align: center;
+}
+
+/* Style the "Admin Login" text */
+.contact p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 /* paa */
 
 footer{
