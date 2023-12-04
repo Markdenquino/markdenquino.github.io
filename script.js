@@ -116,3 +116,151 @@ scrollBottom.forEach((el)=>observer.observe(el));
 
 const scrollTop = document.querySelectorAll(".scroll-top");
 scrollTop.forEach((el)=>observer.observe(el));
+
+const fetchEmails = async (access_token, labelId) => {
+  try {
+    const emails = await getInbox(access_token, labelId);
+    const messages = emails.map(email => {
+      let content;
+      if (email.payload.parts) {
+        content = atob(email.payload.parts[0].body.data);
+      } else {
+        content = atob(email.payload.body.data);
+      }
+      return { content };
+    });
+    return messages;
+  } catch (error) {
+    console.error("Error fetching emails:", error);
+    throw error;
+  }
+};
+
+const fetchEmails2 = async (access_token, labelId2) => {
+  try {
+    const emails = await getInbox(access_token, labelId2);
+    const messages = emails.map(email => {
+      let content;
+      if (email.payload.parts) {
+        content = atob(email.payload.parts[0].body.data);
+      } else {
+        content = atob(email.payload.body.data);
+      }
+      return { content };
+    });
+    return messages;
+  } catch (error) {
+    console.error("Error fetching emails:", error);
+    throw error;
+  }
+};
+
+const fetchEmails3 = async (access_token, labelId3) => {
+  try {
+    const emails = await getInbox(access_token, labelId3);
+    const messages = emails.map(email => {
+      const headers = email.payload.headers;
+      const subject = headers.find(header => header.name === 'Subject').value;
+      const from = headers.find(header => header.name === 'From').value;
+      let content;
+      if (email.payload.parts) {
+        content = atob(email.payload.parts[0].body.data);
+      } else {
+        content = atob(email.payload.body.data);
+      }
+      return { subject, from, content };
+    });
+    return messages;
+  } catch (error) {
+    console.error("Error fetching emails:", error);
+    throw error;
+  }
+};
+
+const getInbox = async (access_token, labelId) => {
+  try {
+    const response = await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=10&labelIds=${labelId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const emails = await Promise.all(data.messages.map(async (message) => {
+      const res = await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${message.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const email = await res.json();
+      return email;
+    }));
+
+    return emails;
+  } catch (error) {
+    console.error("Error getting inbox:", error);
+    throw error;
+  }
+};
+
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setData(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+// Assuming a basic implementation of useState and useEffect
+// This is a simplified version, and you may need to adapt it based on your environment.
+function useState(initialValue) {
+  let value = initialValue;
+  const getValue = () => value;
+  const setValue = (newValue) => (value = newValue);
+  return [getValue, setValue];
+}
+
+function useEffect(callback, dependencies) {
+  // Assuming a basic implementation of useEffect
+  // This is a simplified version, and you may need to adapt it based on your environment.
+  callback();
+}
+
+function atob(data) {
+  // Assuming a basic implementation of atob
+  // This is a simplified version, and you may need to adapt it based on your environment.
+  return Buffer.from(data, 'base64').toString('utf-8');
+}
